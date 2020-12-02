@@ -1,15 +1,21 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvent } from 'react-leaflet';
+import {
+	MapContainer,
+	TileLayer,
+	Marker,
+	Popup,
+	useMapEvent,
+} from 'react-leaflet';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({});
 
 const ClickComponent = () => {
-	useMapEvent('click', (e) => {
-		console.log(e.latlng);
+	useMapEvent('click', e => {
+		console.log(e);
 	});
 	return null;
-}
+};
 
 const Map = () => {
 	return (

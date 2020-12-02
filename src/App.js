@@ -34,7 +34,9 @@ const App = () => {
 							<CourtList />
 						</Grid>
 					</Hidden> */}
-                    <AddCourt />
+					<Grid item xs={12} sm={6} md={5} lg={4} xl={3}>
+						<AddCourt />
+					</Grid>
 				</Grid>
 			</ThemeProvider>
 		);
