@@ -27,13 +27,13 @@ const CourtInfo = () => {
 			/>
 			<div className={classes.details}>
 				<CardContent>
-					<Typography component="h5" variant="h6">
+					<Typography component="h5" variant="h6" color="primary">
 						Yoyogi Park
 					</Typography>
 					<Typography variant="caption" color="textSecondary">
 						Shibuya, Tokyo, Japan
 					</Typography>
-                    <Typography variant="body1">
+                    <Typography variant="body1" color="secondary">
                         Closest Station: Yoyogi
                     </Typography>
                     <Typography variant="body2">
