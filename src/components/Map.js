@@ -6,7 +6,7 @@ const useStyles = makeStyles({});
 
 const ClickComponent = () => {
 	useMapEvent('click', (e) => {
-		console.log(e);
+		console.log(e.latlng);
 	});
 	return null;
 }
