@@ -11,7 +11,7 @@ import DraggableMarker from './DraggableMarker';
 
 const useStyles = makeStyles({});
 
-const Map = ({ courts, mapSelector }) => {
+const Map = ({ courts, mapSelector, newLatLng, setNewLatLng }) => {
 	return (
 		<MapContainer
 			center={[35.6804, 139.769]}
@@ -26,7 +26,7 @@ const Map = ({ courts, mapSelector }) => {
 				attribution="Tiles &copy; Esri"
 				url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
 			/>
-			{mapSelector && <DraggableMarker />}
+			{mapSelector && <DraggableMarker newLatLng={newLatLng} setNewLatLng={setNewLatLng} />}
 			{courts && courts.map(court => {
 				return (
 					<MapMarker court={court} key={court.id}/>

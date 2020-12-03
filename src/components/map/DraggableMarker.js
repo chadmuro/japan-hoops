@@ -1,43 +1,28 @@
-import { TrainRounded } from '@material-ui/icons';
-import React, { useState, useMemo, useRef, useCallback } from 'react';
-import { Marker, Popup } from 'react-leaflet';
+import React, { useState, useMemo, useRef } from 'react';
+import { Marker } from 'react-leaflet';
 
-const DraggableMarker = () => {
-	const [draggable, setDraggable] = useState(true);
-	const [position, setPosition] = useState([35.6804, 139.769]);
+const DraggableMarker = ({ newLatLng, setNewLatLng }) => {
+
 	const markerRef = useRef(null);
 	const eventHandlers = useMemo(
 		() => ({
 			dragend() {
 				const marker = markerRef.current;
 				if (marker != null) {
-					setPosition(marker.getLatLng());
+					setNewLatLng(marker.getLatLng());
 				}
 			},
 		}),
-		[]
+		[newLatLng]
 	);
-	const toggleDraggable = useCallback(() => {
-		setDraggable(d => !d);
-    }, []);
-    
-    console.log(position);
 
 	return (
 		<Marker
-			draggable={draggable}
+			draggable={true}
 			eventHandlers={eventHandlers}
-			position={position}
+			position={newLatLng}
 			ref={markerRef}
-		>
-			<Popup minWidth={90}>
-				<span onClick={toggleDraggable}>
-					{draggable
-						? 'Marker is draggable'
-						: 'Click to make marker draggable'}
-				</span>
-			</Popup>
-		</Marker>
+		></Marker>
 	);
 };
 

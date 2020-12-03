@@ -33,11 +33,9 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddCourt }) => {
+const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddCourt, newLatLng }) => {
 	const classes = useStyles();
 	const [name, setName] = useState('');
-	const [lat, setLat] = useState('');
-	const [lng, setLng] = useState('');
 	const [station, setStation] = useState('');
 	const [inOut, setInOut] = useState('outdoor');
 	const [numHoops, setNumHoops] = useState(1);
@@ -46,18 +44,50 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 		setMapSelector(!mapSelector);
 	}
 
+	const handleClose = () => {
+		setDisplayAddCourt(!displayAddCourt);
+		setMapSelector(!mapSelector);
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		const court = {
+			name,
+			lat: newLatLng.lat,
+			lng: newLatLng.lng,
+			station,
+			inOut,
+			numHoops
+		}
+
+		console.log(court);
+	}
+
 	return (
 		<div className={classes.root}>
-			<IconButton className={classes.closeButton} onClick={() => setDisplayAddCourt(!displayAddCourt)}>
+			<IconButton className={classes.closeButton} onClick={handleClose}>
 				<CloseIcon />
 			</IconButton>
-			<form className={classes.form}>
-				<TextField label="Court Name" fullWidth />
+			<form className={classes.form} onSubmit={handleSubmit}>
+				<TextField
+					label="Court Name"
+					fullWidth
+					value={name}
+					onChange={e => setName(e.target.value)}
+				/>
 				<Button onClick={setLatLng}>
-					Select Map Location
+					{mapSelector
+						? 'Drag Marker to Court Location'
+						: 'Select Map Location'}
 				</Button>
 
-				<TextField label="Closest Station" fullWidth />
+				<TextField
+					label="Closest Station"
+					fullWidth
+					value={station}
+					onChange={e => setStation(e.target.value)}
+				/>
 
 				<RadioGroup row value={inOut} onChange={e => setInOut(e.target.value)}>
 					<FormControlLabel
@@ -72,8 +102,14 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 					/>
 				</RadioGroup>
 
-				<TextField label="Number of Hoops" fullWidth />
-				<input
+				<TextField
+					label="Number of Hoops"
+					type="number"
+					fullWidth
+					value={numHoops}
+					onChange={e => setNumHoops(e.target.value)}
+				/>
+				{/* <input
 					accept="image/*"
 					style={{ display: 'none' }}
 					id="raised-button-file"
@@ -89,7 +125,7 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 					>
 						Upload Image
 					</Button>
-				</label>
+				</label> */}
 
 				<Button
 					type="submit"

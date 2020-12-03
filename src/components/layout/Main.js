@@ -5,14 +5,22 @@ import Map from '../map/Map';
 import CourtList from '../courts/CourtList';
 import AddCourt from '../courts/AddCourt';
 
-
 const Main = ({ courts, displayAddCourt, setDisplayAddCourt }) => {
 	const [mapSelector, setMapSelector] = useState(false);
+	const [newLatLng, setNewLatLng] = useState({
+		lat: 35.6804,
+		lng: 139.769,
+	});
 
 	return (
 		<Grid container>
 			<Grid item xs={12} sm={6} md={7} lg={8} xl={9}>
-				<Map mapSelector={mapSelector} courts={courts} />
+				<Map
+					mapSelector={mapSelector}
+					courts={courts}
+					newLatLng={newLatLng}
+					setNewLatLng={setNewLatLng}
+				/>
 			</Grid>
 			{!displayAddCourt && (
 				<Hidden xsDown>
@@ -24,10 +32,11 @@ const Main = ({ courts, displayAddCourt, setDisplayAddCourt }) => {
 			{displayAddCourt && (
 				<Grid item xs={12} sm={6} md={5} lg={4} xl={3}>
 					<AddCourt
-					displayAddCourt={displayAddCourt}
+						displayAddCourt={displayAddCourt}
 						setDisplayAddCourt={setDisplayAddCourt}
 						mapSelector={mapSelector}
 						setMapSelector={setMapSelector}
+						newLatLng={newLatLng}
 					/>
 				</Grid>
 			)}
@@ -35,10 +44,10 @@ const Main = ({ courts, displayAddCourt, setDisplayAddCourt }) => {
 	);
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
-		courts: state.court.courts
-	}
-}
+		courts: state.court.courts,
+	};
+};
 
 export default connect(mapStateToProps)(Main);

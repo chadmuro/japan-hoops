@@ -7,6 +7,8 @@ const initState = {
 };
 
 const courtReducer = (state = initState, action) => {
+    
+
 	return state;
 };
 
