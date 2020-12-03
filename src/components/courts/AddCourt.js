@@ -46,7 +46,7 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 
 	const handleClose = () => {
 		setDisplayAddCourt(!displayAddCourt);
-		setMapSelector(!mapSelector);
+		setMapSelector(false);
 	}
 
 	const handleSubmit = (e) => {

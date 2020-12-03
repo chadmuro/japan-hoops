@@ -30,10 +30,10 @@ const CourtInfo = ({ court }) => {
 						Shibuya, Tokyo, Japan
 					</Typography>
 					<Typography variant="body1" color="secondary">
-						Closest Station: Yoyogi
+						Closest Station: {court.station}
 					</Typography>
-					<Typography variant="body2">Number of Hoops: 3</Typography>
-					<Typography variant="body2">Indoor/Outdoor</Typography>
+					<Typography variant="body2">Number of Hoops: {court.numHoops}</Typography>
+					<Typography variant="body2">{court.inOut}</Typography>
 				</CardContent>
 			</div>
 			{/* <CardMedia

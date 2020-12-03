@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Grid, Hidden } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import Map from '../map/Map';
 import CourtList from '../courts/CourtList';
 import AddCourt from '../courts/AddCourt';
@@ -25,7 +27,7 @@ const Main = ({ courts, displayAddCourt, setDisplayAddCourt }) => {
 			{!displayAddCourt && (
 				<Hidden xsDown>
 					<Grid item sm={6} md={5} lg={4} xl={3}>
-						<CourtList courts={courts}/>
+						<CourtList courts={courts} />
 					</Grid>
 				</Hidden>
 			)}
@@ -45,9 +47,13 @@ const Main = ({ courts, displayAddCourt, setDisplayAddCourt }) => {
 };
 
 const mapStateToProps = state => {
+	console.log(state);
 	return {
-		courts: state.court.courts,
+		courts: state.firestore.ordered.courts,
 	};
 };
 
-export default connect(mapStateToProps)(Main);
+export default compose(
+	connect(mapStateToProps),
+	firestoreConnect([{ collection: 'courts' }])
+)(Main);
