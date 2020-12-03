@@ -25,7 +25,7 @@ const Main = ({ courts, displayAddCourt, setDisplayAddCourt }) => {
 			{!displayAddCourt && (
 				<Hidden xsDown>
 					<Grid item sm={6} md={5} lg={4} xl={3}>
-						<CourtList />
+						<CourtList courts={courts}/>
 					</Grid>
 				</Hidden>
 			)}

@@ -3,25 +3,23 @@ import { makeStyles } from '@material-ui/core';
 import CourtInfo from './CourtInfo';
 
 const useStyles = makeStyles({
-    list: {
-        height: 'calc(100vh - 56px)',
-        overflowY: 'scroll'
-    }
-})
+	list: {
+		height: 'calc(100vh - 56px)',
+		overflowY: 'scroll',
+	},
+});
 
-const CourtList = () => {
-    const classes = useStyles();
+const CourtList = ({ courts }) => {
+	const classes = useStyles();
 
-    return (
-        <div className={classes.list}>
-            <CourtInfo />
-            <CourtInfo />
-            <CourtInfo />
-            <CourtInfo />
-            <CourtInfo />
-            <CourtInfo />
-        </div>
-    )
-}
+	return (
+		<div className={classes.list}>
+			{courts &&
+				courts.map(court => {
+					return <CourtInfo court={court} key={court.id} />
+				})}
+		</div>
+	);
+};
 
 export default CourtList;

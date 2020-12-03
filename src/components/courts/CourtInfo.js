@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 })
 
-const CourtInfo = () => {
+const CourtInfo = ({ court }) => {
     const classes = useStyles();
 
 	return (
@@ -24,7 +24,7 @@ const CourtInfo = () => {
 			<div className={classes.details}>
 				<CardContent>
 					<Typography component="h5" variant="h6" color="primary">
-						Yoyogi Park
+						{court.name}
 					</Typography>
 					<Typography variant="caption" color="textSecondary">
 						Shibuya, Tokyo, Japan
