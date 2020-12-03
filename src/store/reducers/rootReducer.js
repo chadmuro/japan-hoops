@@ -4,7 +4,7 @@ import courtReducer from './courtReducer';
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    court: courtReducer
+    court: courtReducer,
 });
 
 export default rootReducer;
