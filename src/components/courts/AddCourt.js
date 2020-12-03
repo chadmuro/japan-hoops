@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { makeStyles, TextField, IconButton, Button, RadioGroup, Radio, FormControlLabel } from '@material-ui/core';
+import {
+	makeStyles,
+	TextField,
+	IconButton,
+	Button,
+	RadioGroup,
+	Radio,
+	FormControlLabel,
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles(theme => ({
@@ -23,15 +31,19 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const AddCourt = () => {
+const AddCourt = ({ mapSelector, setMapSelector }) => {
 	const classes = useStyles();
 	const [name, setName] = useState('');
-	const [mapSelector, setMapSelector] = useState(false);
 	const [lat, setLat] = useState('');
 	const [lng, setLng] = useState('');
 	const [station, setStation] = useState('');
 	const [inOut, setInOut] = useState('outdoor');
-	const [numHoops, setnumHoops] = useState(1);
+	const [numHoops, setNumHoops] = useState(1);
+
+	const setLatLng = () => {
+		setMapSelector(!mapSelector);
+		
+	}
 
 	return (
 		<div className={classes.root}>
@@ -40,11 +52,13 @@ const AddCourt = () => {
 			</IconButton>
 			<form className={classes.form}>
 				<TextField label="Court Name" fullWidth />
-				<Button>Select Map Location</Button>
+				<Button onClick={setLatLng}>
+					Select Map Location
+				</Button>
 
 				<TextField label="Closest Station" fullWidth />
 
-				<RadioGroup row value={inOut} onChange={(e) => setInOut(e.target.value)}>
+				<RadioGroup row value={inOut} onChange={e => setInOut(e.target.value)}>
 					<FormControlLabel
 						value="outdoor"
 						control={<Radio color="primary" size="small" />}

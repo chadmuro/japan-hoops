@@ -3,21 +3,15 @@ import {
 	MapContainer,
 	TileLayer,
 	Marker,
-	Popup,
-	useMapEvent,
+	Popup
 } from 'react-leaflet';
 import { makeStyles } from '@material-ui/core';
 
+import DraggableMarker from './DraggableMarker';
+
 const useStyles = makeStyles({});
 
-const ClickComponent = () => {
-	useMapEvent('click', e => {
-		console.log(e);
-	});
-	return null;
-};
-
-const Map = () => {
+const Map = ({ mapSelector }) => {
 	return (
 		<MapContainer
 			center={[35.6804, 139.769]}
@@ -32,12 +26,12 @@ const Map = () => {
 				attribution="Tiles &copy; Esri"
 				url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
 			/>
-			<ClickComponent />
-			<Marker position={[35.6804, 139.769]}>
+			{mapSelector && <DraggableMarker />}
+			{/* <Marker position={[35.6804, 139.769]}>
 				<Popup>
 					Court Name <br /> Minato, Tokyo, Japan
 				</Popup>
-			</Marker>
+			</Marker> */}
 		</MapContainer>
 	);
 };
