@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import React, { useState } from 'react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 
@@ -20,10 +20,18 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
+    const [displayAddCourt, setDisplayAddCourt] = useState(false);
+
     return (
 			<ThemeProvider theme={theme}>
-				<Header />
-				<Main />
+				<Header
+					displayAddCourt={displayAddCourt}
+					setDisplayAddCourt={setDisplayAddCourt}
+				/>
+				<Main
+					displayAddCourt={displayAddCourt}
+					setDisplayAddCourt={setDisplayAddCourt}
+				/>
 			</ThemeProvider>
 		);
 }

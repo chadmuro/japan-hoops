@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     }
 })
 
-const Header = () => {
+const Header = ({ displayAddCourt, setDisplayAddCourt }) => {
     const classes = useStyles();
 
     return (
@@ -16,7 +16,12 @@ const Header = () => {
 					<Typography variant="h6" className={classes.title}>
 						Japan Hoops
 					</Typography>
-					<Button color="inherit">Add Court</Button>
+					<Button
+						color="inherit"
+						onClick={() => setDisplayAddCourt(!displayAddCourt)}
+					>
+						{displayAddCourt ? 'Show Courts' : 'Add Court'}
+					</Button>
 					<Button color="inherit">Login</Button>
 				</Toolbar>
 			</AppBar>

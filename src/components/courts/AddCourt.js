@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import {
 	makeStyles,
 	TextField,
@@ -9,6 +10,7 @@ import {
 	FormControlLabel,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import { addCourt } from '../../store/actions/courtActions';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const AddCourt = ({ mapSelector, setMapSelector }) => {
+const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddCourt }) => {
 	const classes = useStyles();
 	const [name, setName] = useState('');
 	const [lat, setLat] = useState('');
@@ -42,12 +44,11 @@ const AddCourt = ({ mapSelector, setMapSelector }) => {
 
 	const setLatLng = () => {
 		setMapSelector(!mapSelector);
-		
 	}
 
 	return (
 		<div className={classes.root}>
-			<IconButton className={classes.closeButton}>
+			<IconButton className={classes.closeButton} onClick={() => setDisplayAddCourt(!displayAddCourt)}>
 				<CloseIcon />
 			</IconButton>
 			<form className={classes.form}>
@@ -103,4 +104,10 @@ const AddCourt = ({ mapSelector, setMapSelector }) => {
 	);
 };
 
-export default AddCourt;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addCourt: (court) => dispatch(addCourt(court))
+	}
+}
+
+export default connect(null, mapDispatchToProps)(AddCourt);

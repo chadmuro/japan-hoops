@@ -6,12 +6,12 @@ import {
 	Popup
 } from 'react-leaflet';
 import { makeStyles } from '@material-ui/core';
-
+import MapMarker from './MapMarker';
 import DraggableMarker from './DraggableMarker';
 
 const useStyles = makeStyles({});
 
-const Map = ({ mapSelector }) => {
+const Map = ({ courts, mapSelector }) => {
 	return (
 		<MapContainer
 			center={[35.6804, 139.769]}
@@ -27,11 +27,11 @@ const Map = ({ mapSelector }) => {
 				url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
 			/>
 			{mapSelector && <DraggableMarker />}
-			{/* <Marker position={[35.6804, 139.769]}>
-				<Popup>
-					Court Name <br /> Minato, Tokyo, Japan
-				</Popup>
-			</Marker> */}
+			{courts && courts.map(court => {
+				return (
+					<MapMarker court={court} key={court.id}/>
+				);
+			})}
 		</MapContainer>
 	);
 };
