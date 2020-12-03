@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddCourt, newLatLng }) => {
+const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddCourt, newLatLng, addCourt }) => {
 	const classes = useStyles();
 	const [name, setName] = useState('');
 	const [station, setStation] = useState('');
@@ -52,7 +52,7 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const court = {
+		const newCourt = {
 			name,
 			lat: newLatLng.lat,
 			lng: newLatLng.lng,
@@ -61,7 +61,7 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 			numHoops
 		}
 
-		console.log(court);
+		addCourt(newCourt);
 	}
 
 	return (

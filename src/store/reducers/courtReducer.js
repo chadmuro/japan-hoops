@@ -7,7 +7,11 @@ const initState = {
 };
 
 const courtReducer = (state = initState, action) => {
-    
+    switch (action.type) {
+        case 'ADD_COURT': {
+            console.log('added court', action.court)
+        }
+    }
 
 	return state;
 };
