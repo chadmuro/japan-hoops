@@ -8,7 +8,7 @@ import CourtList from '../courts/CourtList';
 import AddCourt from '../courts/AddCourt';
 import LoginSignup from '../auth/LoginSignup';
 
-const Main = ({ courts, displayAddCourt, setDisplayAddCourt, displayLoginSignup, setDisplayLoginSignup }) => {
+const Main = ({ courts, displayAddCourt, setDisplayAddCourt, loginSignup }) => {
 	const [mapSelector, setMapSelector] = useState(false);
 	const [newLatLng, setNewLatLng] = useState({
 		lat: 35.6804,
@@ -17,7 +17,7 @@ const Main = ({ courts, displayAddCourt, setDisplayAddCourt, displayLoginSignup,
 
 	return (
 		<>
-			{displayLoginSignup && <LoginSignup displayLoginSignup={displayLoginSignup} setDisplayLoginSignup={setDisplayLoginSignup} />}
+			{loginSignup && <LoginSignup />}
 			<Grid container>
 				<Grid item xs={12} sm={6} md={7} lg={8} xl={9}>
 					<Map
@@ -51,8 +51,10 @@ const Main = ({ courts, displayAddCourt, setDisplayAddCourt, displayLoginSignup,
 };
 
 const mapStateToProps = state => {
+	console.log(state)
 	return {
 		courts: state.firestore.ordered.courts,
+		loginSignup: state.auth.loginSignup,
 	};
 };
 

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../../store/actions/authActions';
 import { Typography, TextField, Button, Link, IconButton, makeStyles } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import {
+	logIn,
+	signUp,
+	showLoginSignup,
+} from '../../store/actions/authActions';
 
 const useStyles = makeStyles({
 	main: {
@@ -40,34 +44,33 @@ const useStyles = makeStyles({
 	},
 });
 
-const LoginSignup = ({ displayLoginSignup, setDisplayLoginSignup, logIn, authError }) => {
+const LoginSignup = ({ loginSignup, showLoginSignup, logIn, signUp, authError }) => {
 	const classes = useStyles();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
 	const handleFormSubmit = e => {
 		e.preventDefault();
-		const cred = {
+		const user = {
 			email,
 			password
 		}
-	
-		if (displayLoginSignup === 'login') {
-			logIn(cred);
-		} else if (displayLoginSignup === 'signup'){
-			logIn(cred);
-		}
+		if (loginSignup === 'login') {
+			logIn(user);
+		} else if (loginSignup === 'signup'){
+			signUp(user);
+		}	
 	};
 
 	const handleFormChange = () => {
-		displayLoginSignup === 'login' ? setDisplayLoginSignup('signup') : setDisplayLoginSignup('login');
+		loginSignup === 'login' ? showLoginSignup('signup') : showLoginSignup('login');
 		setEmail('');
 		setPassword('');
 	};
 
 	return (
 		<div className={classes.main}>
-			<IconButton className={classes.closeButton} onClick={() => setDisplayLoginSignup(null)}>
+			<IconButton className={classes.closeButton} onClick={() => showLoginSignup(null)}>
 				<CloseIcon />
 			</IconButton>
 			<form
@@ -75,7 +78,7 @@ const LoginSignup = ({ displayLoginSignup, setDisplayLoginSignup, logIn, authErr
 				onSubmit={handleFormSubmit}
 			>
 				<Typography variant="h4" className={classes.title}>
-					{displayLoginSignup === 'login' ? 'Login' : 'Sign Up'}
+					{loginSignup === 'login' ? 'Login' : 'Sign Up'}
 				</Typography>
 				<TextField
 					value={email}
@@ -100,18 +103,18 @@ const LoginSignup = ({ displayLoginSignup, setDisplayLoginSignup, logIn, authErr
 					className={classes.button}
 					align="center"
 				>
-					{displayLoginSignup === 'login' ? 'Login' : 'Sign Up'}
+					{loginSignup === 'login' ? 'Login' : 'Sign Up'}
 				</Button>
 				<Typography className={classes.text}>
-					{displayLoginSignup === 'login'
+					{loginSignup === 'login'
 						? "Don't have an account?"
 						: 'Already have an account?'}
 					&nbsp;
 					<Link className={classes.link} onClick={handleFormChange}>
-						{displayLoginSignup === 'login' ? 'Sign Up' : 'Login'}
+						{loginSignup === 'login' ? 'Sign Up' : 'Login'}
 					</Link>
 				</Typography>
-				<Typography color="error">{ authError ? authError : null }</Typography>
+				<Typography color="error" align="center">{ authError ? authError : null }</Typography>
 			</form>
 		</div>
 	);
@@ -119,13 +122,17 @@ const LoginSignup = ({ displayLoginSignup, setDisplayLoginSignup, logIn, authErr
 
 const mapStateToProps = state => {
 	return {
-		authError: state.auth.authError
-	}
+		authError: state.auth.authError,
+		auth: state.firebase.auth,
+		loginSignup: state.auth.loginSignup,
+	};
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		logIn: (credentials) => dispatch(logIn(credentials))
+		logIn: (credentials) => dispatch(logIn(credentials)),
+		signUp: (newUser) => dispatch(signUp(newUser)),
+		showLoginSignup: (show) => dispatch(showLoginSignup(show))
 	}
 }
 

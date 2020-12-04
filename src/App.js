@@ -21,20 +21,16 @@ const theme = createMuiTheme({
 
 const App = () => {
     const [displayAddCourt, setDisplayAddCourt] = useState(false);
-    const [displayLoginSignup, setDisplayLoginSignup] = useState(null);
 
     return (
 			<ThemeProvider theme={theme}>
 				<Header
 					displayAddCourt={displayAddCourt}
 					setDisplayAddCourt={setDisplayAddCourt}
-					setDisplayLoginSignup={setDisplayLoginSignup}
 				/>
 				<Main
 					displayAddCourt={displayAddCourt}
 					setDisplayAddCourt={setDisplayAddCourt}
-					displayLoginSignup={displayLoginSignup}
-					setDisplayLoginSignup={setDisplayLoginSignup}
 				/>
 			</ThemeProvider>
 		);
