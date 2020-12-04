@@ -96,12 +96,12 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 
 				<RadioGroup row value={inOut} onChange={e => setInOut(e.target.value)}>
 					<FormControlLabel
-						value="outdoor"
+						value="Outdoor"
 						control={<Radio color="primary" size="small" />}
 						label="Outdoor"
 					/>
 					<FormControlLabel
-						value="indoor"
+						value="Indoor"
 						control={<Radio color="primary" size="small" />}
 						label="Indoor"
 					/>

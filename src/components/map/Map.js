@@ -5,11 +5,8 @@ import {
 	Marker,
 	Popup
 } from 'react-leaflet';
-import { makeStyles } from '@material-ui/core';
 import MapMarker from './MapMarker';
 import DraggableMarker from './DraggableMarker';
-
-const useStyles = makeStyles({});
 
 const Map = ({ courts, mapSelector, newLatLng, setNewLatLng }) => {
 	return (
