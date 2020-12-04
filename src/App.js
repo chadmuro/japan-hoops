@@ -23,7 +23,6 @@ const App = () => {
     const [displayAddCourt, setDisplayAddCourt] = useState(false);
     const [displayLoginSignup, setDisplayLoginSignup] = useState(null);
 
-    console.log(displayLoginSignup);
     return (
 			<ThemeProvider theme={theme}>
 				<Header

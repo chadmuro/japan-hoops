@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { logIn } from '../../store/actions/authActions';
 import { Typography, TextField, Button, Link, IconButton, makeStyles } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -38,35 +40,29 @@ const useStyles = makeStyles({
 	},
 });
 
-const LoginSignup = ({ displayLoginSignup, setDisplayLoginSignup }) => {
+const LoginSignup = ({ displayLoginSignup, setDisplayLoginSignup, logIn, authError }) => {
 	const classes = useStyles();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [error, setError] = useState(null);
 
-	// const handleFormSubmit = e => {
-	// 	e.preventDefault();
-
-	// 	if (displayLogin) {
-	// 		authLogin(email, password).then(() => {
-	// 			setEmail('');
-	// 			setPassword('');
-	// 			setError('');
-	// 		});
-	// 	} else {
-	// 		authSignup(email, password).then(() => {
-	// 			setEmail('');
-	// 			setPassword('');
-	// 			setError('');
-	// 		});
-	// 	}
-	// };
+	const handleFormSubmit = e => {
+		e.preventDefault();
+		const cred = {
+			email,
+			password
+		}
+	
+		if (displayLoginSignup === 'login') {
+			logIn(cred);
+		} else if (displayLoginSignup === 'signup'){
+			logIn(cred);
+		}
+	};
 
 	const handleFormChange = () => {
 		displayLoginSignup === 'login' ? setDisplayLoginSignup('signup') : setDisplayLoginSignup('login');
 		setEmail('');
 		setPassword('');
-		setError('');
 	};
 
 	return (
@@ -76,7 +72,7 @@ const LoginSignup = ({ displayLoginSignup, setDisplayLoginSignup }) => {
 			</IconButton>
 			<form
 				className={classes.container}
-				onSubmit={() => console.log('submit')}
+				onSubmit={handleFormSubmit}
 			>
 				<Typography variant="h4" className={classes.title}>
 					{displayLoginSignup === 'login' ? 'Login' : 'Sign Up'}
@@ -115,10 +111,22 @@ const LoginSignup = ({ displayLoginSignup, setDisplayLoginSignup }) => {
 						{displayLoginSignup === 'login' ? 'Sign Up' : 'Login'}
 					</Link>
 				</Typography>
-				<Typography>{error}</Typography>
+				<Typography color="error">{ authError ? authError : null }</Typography>
 			</form>
 		</div>
 	);
 };
 
-export default LoginSignup;
+const mapStateToProps = state => {
+	return {
+		authError: state.auth.authError
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		logIn: (credentials) => dispatch(logIn(credentials))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginSignup);
