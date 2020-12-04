@@ -2,7 +2,6 @@ import React, { useState, useMemo, useRef } from 'react';
 import { Marker } from 'react-leaflet';
 
 const DraggableMarker = ({ newLatLng, setNewLatLng }) => {
-
 	const markerRef = useRef(null);
 	const eventHandlers = useMemo(
 		() => ({

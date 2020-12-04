@@ -37,7 +37,7 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 	const classes = useStyles();
 	const [name, setName] = useState('');
 	const [station, setStation] = useState('');
-	const [inOut, setInOut] = useState('outdoor');
+	const [inOut, setInOut] = useState('Outdoor');
 	const [numHoops, setNumHoops] = useState(1);
 
 	const setLatLng = () => {
@@ -66,6 +66,7 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 		setStation('');
 		setInOut('outdoor');
 		setNumHoops(1);
+		setMapSelector(!mapSelector);
 		setDisplayAddCourt(!displayAddCourt);
 	}
 
