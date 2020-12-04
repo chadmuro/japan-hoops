@@ -1,5 +1,5 @@
 export const addCourt = (court) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
+    return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
         firestore.collection('courts').add({
             ...court
@@ -8,7 +8,5 @@ export const addCourt = (court) => {
         }).catch((err) => {
             dispatch({ type: 'ADD_COURT_ERROR', err })
         })
-
-        
     }
 };

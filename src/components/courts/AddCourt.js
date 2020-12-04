@@ -62,6 +62,11 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 		}
 
 		addCourt(newCourt);
+		setName('');
+		setStation('');
+		setInOut('outdoor');
+		setNumHoops(1);
+		setDisplayAddCourt(!displayAddCourt);
 	}
 
 	return (
