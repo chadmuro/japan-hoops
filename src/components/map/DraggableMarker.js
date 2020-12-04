@@ -13,7 +13,7 @@ const DraggableMarker = ({ newLatLng, setNewLatLng }) => {
 				}
 			},
 		}),
-		[newLatLng]
+		[newLatLng, setNewLatLng]
 	);
 
 	return (

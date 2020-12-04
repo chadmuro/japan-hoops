@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     }
 })
 
-const Header = ({ displayAddCourt, setDisplayAddCourt }) => {
+const Header = ({ displayAddCourt, setDisplayAddCourt, setDisplayLoginSignup }) => {
     const classes = useStyles();
 
     return (
@@ -22,7 +22,9 @@ const Header = ({ displayAddCourt, setDisplayAddCourt }) => {
 					>
 						{displayAddCourt ? 'Show Courts' : 'Add Court'}
 					</Button>
-					<Button color="inherit">Login</Button>
+					<Button color="inherit">Logout</Button>
+					<Button color="inherit" onClick={() => setDisplayLoginSignup('login')}>Login</Button>
+					<Button color="inherit" onClick={() => setDisplayLoginSignup('signup')}>Sign up</Button>
 				</Toolbar>
 			</AppBar>
 		);
