@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddCourt, newLatLng, addCourt }) => {
+const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddCourt, addCourt, newLat, newLng }) => {
 	const classes = useStyles();
 	const [name, setName] = useState('');
 	const [station, setStation] = useState('');
@@ -54,8 +54,8 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 
 		const newCourt = {
 			name,
-			lat: newLatLng.lat,
-			lng: newLatLng.lng,
+			lat: newLat,
+			lng: newLng,
 			station,
 			inOut,
 			numHoops
@@ -146,10 +146,17 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 	);
 };
 
+const mapStateToProps = state => {
+	return {
+		newLat: state.location.newLat,
+		newLng: state.location.newLng
+	}
+}
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addCourt: (court) => dispatch(addCourt(court))
 	}
 }
 
-export default connect(null, mapDispatchToProps)(AddCourt);
+export default connect(mapStateToProps, mapDispatchToProps)(AddCourt);

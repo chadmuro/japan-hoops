@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import MapMarker from './MapMarker';
 import DraggableMarker from './DraggableMarker';
 
-const Map = ({ courts, mapSelector, newLatLng, setNewLatLng, location }) => {
+const Map = ({ courts, mapSelector, location }) => {
 	return (
 		<MapContainer
 			center={[location.lat, location.lng]}
@@ -20,7 +20,7 @@ const Map = ({ courts, mapSelector, newLatLng, setNewLatLng, location }) => {
 				url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
 			/>
 			{mapSelector && (
-				<DraggableMarker newLatLng={newLatLng} setNewLatLng={setNewLatLng} />
+				<DraggableMarker />
 			)}
 			{courts &&
 				courts.map(court => {

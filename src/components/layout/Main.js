@@ -9,13 +9,14 @@ import CourtList from '../courts/CourtList';
 import AddCourt from '../courts/AddCourt';
 import LoginSignup from '../auth/LoginSignup';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		marginTop: theme.spacing(5)
 	}
-})
+}));
 
 const Main = ({
 	courts,
@@ -25,10 +26,6 @@ const Main = ({
 	loginSignup,
 }) => {
 	const [mapSelector, setMapSelector] = useState(false);
-	const [newLatLng, setNewLatLng] = useState({
-		lat: 35.6804,
-		lng: 139.769,
-	});
 	const classes = useStyles();
 
 	return location.loading ? (
@@ -43,8 +40,6 @@ const Main = ({
 					<Map
 						mapSelector={mapSelector}
 						courts={courts}
-						newLatLng={newLatLng}
-						setNewLatLng={setNewLatLng}
 					/>
 				</Grid>
 				{!displayAddCourt && (
@@ -61,7 +56,6 @@ const Main = ({
 							setDisplayAddCourt={setDisplayAddCourt}
 							mapSelector={mapSelector}
 							setMapSelector={setMapSelector}
-							newLatLng={newLatLng}
 						/>
 					</Grid>
 				)}
@@ -71,7 +65,6 @@ const Main = ({
 };
 
 const mapStateToProps = state => {
-	console.log(state);
 	return {
 		courts: state.firestore.ordered.courts,
 		loginSignup: state.auth.loginSignup,
