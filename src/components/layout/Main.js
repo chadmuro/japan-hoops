@@ -9,13 +9,13 @@ import CourtList from '../courts/CourtList';
 import AddCourt from '../courts/AddCourt';
 import LoginSignup from '../auth/LoginSignup';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
 	root: {
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: theme.spacing(5)
-	}
+		marginTop: theme.spacing(5),
+	},
 }));
 
 const Main = ({
@@ -30,17 +30,14 @@ const Main = ({
 
 	return location.loading ? (
 		<div className={classes.root}>
-			<CircularProgress size={100} color="secondary"/>
+			<CircularProgress size={100} color="secondary" />
 		</div>
 	) : (
 		<>
 			{loginSignup && <LoginSignup />}
 			<Grid container>
 				<Grid item xs={12} sm={6} md={7} lg={8} xl={9}>
-					<Map
-						mapSelector={mapSelector}
-						courts={courts}
-					/>
+					<Map mapSelector={mapSelector} courts={courts} />
 				</Grid>
 				{!displayAddCourt && (
 					<Hidden xsDown>

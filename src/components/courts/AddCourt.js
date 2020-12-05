@@ -33,7 +33,15 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddCourt, addCourt, newLat, newLng }) => {
+const AddCourt = ({
+	mapSelector,
+	setMapSelector,
+	displayAddCourt,
+	setDisplayAddCourt,
+	addCourt,
+	newLat,
+	newLng,
+}) => {
 	const classes = useStyles();
 	const [name, setName] = useState('');
 	const [station, setStation] = useState('');
@@ -42,14 +50,14 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 
 	const setLatLng = () => {
 		setMapSelector(!mapSelector);
-	}
+	};
 
 	const handleClose = () => {
 		setDisplayAddCourt(!displayAddCourt);
 		setMapSelector(false);
-	}
+	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = e => {
 		e.preventDefault();
 
 		const newCourt = {
@@ -58,8 +66,8 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 			lng: newLng,
 			station,
 			inOut,
-			numHoops
-		}
+			numHoops,
+		};
 
 		addCourt(newCourt);
 		setName('');
@@ -68,7 +76,7 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 		setNumHoops(1);
 		setMapSelector(!mapSelector);
 		setDisplayAddCourt(!displayAddCourt);
-	}
+	};
 
 	return (
 		<div className={classes.root}>
@@ -149,14 +157,14 @@ const AddCourt = ({ mapSelector, setMapSelector, displayAddCourt, setDisplayAddC
 const mapStateToProps = state => {
 	return {
 		newLat: state.location.newLat,
-		newLng: state.location.newLng
-	}
-}
+		newLng: state.location.newLng,
+	};
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
 	return {
-		addCourt: (court) => dispatch(addCourt(court))
-	}
-}
+		addCourt: court => dispatch(addCourt(court)),
+	};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCourt);

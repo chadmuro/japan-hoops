@@ -2,7 +2,7 @@ import { Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import basketball from '../../basketball.png';
 
-const MapMarker = ({court}) => {
+const MapMarker = ({ court }) => {
 	const icon = new Icon({
 		iconUrl: basketball,
 		iconSize: [25, 25],
@@ -15,6 +15,6 @@ const MapMarker = ({court}) => {
 			</Popup>
 		</Marker>
 	);
-}
+};
 
 export default MapMarker;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import { connect } from 'react-redux';
 import MapMarker from './MapMarker';
 import DraggableMarker from './DraggableMarker';
@@ -19,9 +19,7 @@ const Map = ({ courts, mapSelector, location }) => {
 				attribution="Tiles &copy; Esri"
 				url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
 			/>
-			{mapSelector && (
-				<DraggableMarker />
-			)}
+			{mapSelector && <DraggableMarker />}
 			{courts &&
 				courts.map(court => {
 					return <MapMarker court={court} key={court.id} />;

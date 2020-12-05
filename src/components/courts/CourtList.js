@@ -16,7 +16,7 @@ const CourtList = ({ courts }) => {
 		<div className={classes.list}>
 			{courts &&
 				courts.map(court => {
-					return <CourtInfo court={court} key={court.id} />
+					return <CourtInfo court={court} key={court.id} />;
 				})}
 		</div>
 	);

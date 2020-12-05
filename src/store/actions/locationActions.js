@@ -15,13 +15,11 @@ export const getLocation = () => {
 	};
 };
 
-export const setNewLocation = (coords) => {
-	return (
-		dispatch => {
-			dispatch({
-				type: 'SET_LOCATION',
-				payload: coords
-			});
-		}
-	);
+export const setNewLocation = coords => {
+	return dispatch => {
+		dispatch({
+			type: 'SET_LOCATION',
+			payload: coords,
+		});
+	};
 };

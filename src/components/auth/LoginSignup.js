@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Typography, TextField, Button, Link, IconButton, makeStyles } from '@material-ui/core';
+import {
+	Typography,
+	TextField,
+	Button,
+	Link,
+	IconButton,
+	makeStyles,
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import {
 	logIn,
@@ -15,7 +22,7 @@ const useStyles = makeStyles({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		position: 'relative'
+		position: 'relative',
 	},
 	container: {
 		display: 'flex',
@@ -44,7 +51,13 @@ const useStyles = makeStyles({
 	},
 });
 
-const LoginSignup = ({ loginSignup, showLoginSignup, logIn, signUp, authError }) => {
+const LoginSignup = ({
+	loginSignup,
+	showLoginSignup,
+	logIn,
+	signUp,
+	authError,
+}) => {
 	const classes = useStyles();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -53,30 +66,32 @@ const LoginSignup = ({ loginSignup, showLoginSignup, logIn, signUp, authError })
 		e.preventDefault();
 		const user = {
 			email,
-			password
-		}
+			password,
+		};
 		if (loginSignup === 'login') {
 			logIn(user);
-		} else if (loginSignup === 'signup'){
+		} else if (loginSignup === 'signup') {
 			signUp(user);
-		}	
+		}
 	};
 
 	const handleFormChange = () => {
-		loginSignup === 'login' ? showLoginSignup('signup') : showLoginSignup('login');
+		loginSignup === 'login'
+			? showLoginSignup('signup')
+			: showLoginSignup('login');
 		setEmail('');
 		setPassword('');
 	};
 
 	return (
 		<div className={classes.main}>
-			<IconButton className={classes.closeButton} onClick={() => showLoginSignup(null)}>
+			<IconButton
+				className={classes.closeButton}
+				onClick={() => showLoginSignup(null)}
+			>
 				<CloseIcon />
 			</IconButton>
-			<form
-				className={classes.container}
-				onSubmit={handleFormSubmit}
-			>
+			<form className={classes.container} onSubmit={handleFormSubmit}>
 				<Typography variant="h4" className={classes.title}>
 					{loginSignup === 'login' ? 'Login' : 'Sign Up'}
 				</Typography>
@@ -114,7 +129,9 @@ const LoginSignup = ({ loginSignup, showLoginSignup, logIn, signUp, authError })
 						{loginSignup === 'login' ? 'Sign Up' : 'Login'}
 					</Link>
 				</Typography>
-				<Typography color="error" align="center">{ authError ? authError : null }</Typography>
+				<Typography color="error" align="center">
+					{authError ? authError : null}
+				</Typography>
 			</form>
 		</div>
 	);
@@ -126,14 +143,14 @@ const mapStateToProps = state => {
 		auth: state.firebase.auth,
 		loginSignup: state.auth.loginSignup,
 	};
-}
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
 	return {
-		logIn: (credentials) => dispatch(logIn(credentials)),
-		signUp: (newUser) => dispatch(signUp(newUser)),
-		showLoginSignup: (show) => dispatch(showLoginSignup(show))
-	}
-}
+		logIn: credentials => dispatch(logIn(credentials)),
+		signUp: newUser => dispatch(signUp(newUser)),
+		showLoginSignup: show => dispatch(showLoginSignup(show)),
+	};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginSignup);

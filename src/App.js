@@ -6,38 +6,38 @@ import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 
 const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#17408b"
-        },
-        secondary: {
-            main: "#c9082a"
-        }
-    },
-    mixins: {
-        toolbar: {
-            minHeight: 56
-        }
-    }
+	palette: {
+		primary: {
+			main: '#17408b',
+		},
+		secondary: {
+			main: '#c9082a',
+		},
+	},
+	mixins: {
+		toolbar: {
+			minHeight: 56,
+		},
+	},
 });
 
 const App = ({ getLocation }) => {
-    const [displayAddCourt, setDisplayAddCourt] = useState(false);
-    getLocation();
+	const [displayAddCourt, setDisplayAddCourt] = useState(false);
+	getLocation();
 
-    return (
-			<ThemeProvider theme={theme}>
-				<Header
-					displayAddCourt={displayAddCourt}
-					setDisplayAddCourt={setDisplayAddCourt}
-				/>
-				<Main
-					displayAddCourt={displayAddCourt}
-					setDisplayAddCourt={setDisplayAddCourt}
-				/>
-			</ThemeProvider>
-		);
-}
+	return (
+		<ThemeProvider theme={theme}>
+			<Header
+				displayAddCourt={displayAddCourt}
+				setDisplayAddCourt={setDisplayAddCourt}
+			/>
+			<Main
+				displayAddCourt={displayAddCourt}
+				setDisplayAddCourt={setDisplayAddCourt}
+			/>
+		</ThemeProvider>
+	);
+};
 
 const mapDispatchToProps = dispatch => {
 	return {

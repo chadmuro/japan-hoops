@@ -30,14 +30,14 @@ const DraggableMarker = ({ newLocation, setNewLocation }) => {
 
 const mapStateToProps = state => {
 	return {
-		newLocation: state.location
-	}
-}
+		newLocation: state.location,
+	};
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
 	return {
-		setNewLocation: (coords) => dispatch(setNewLocation(coords))
-	}
-}
+		setNewLocation: coords => dispatch(setNewLocation(coords)),
+	};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DraggableMarker);

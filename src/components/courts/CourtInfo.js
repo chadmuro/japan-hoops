@@ -1,23 +1,28 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography, makeStyles } from '@material-ui/core';
+import {
+	Card,
+	CardMedia,
+	CardContent,
+	Typography,
+	makeStyles,
+} from '@material-ui/core';
 
 const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-        justifyContent: 'space-between'
-    },
-    image: {
-        width: 150
-    },
-    details: {
-        display: 'flex',
-        flexDirection: 'column'
-    },
-
-})
+	root: {
+		display: 'flex',
+		justifyContent: 'space-between',
+	},
+	image: {
+		width: 150,
+	},
+	details: {
+		display: 'flex',
+		flexDirection: 'column',
+	},
+});
 
 const CourtInfo = ({ court }) => {
-    const classes = useStyles();
+	const classes = useStyles();
 
 	return (
 		<Card className={classes.root}>
@@ -32,7 +37,9 @@ const CourtInfo = ({ court }) => {
 					<Typography variant="body1" color="secondary">
 						Closest Station: {court.station}
 					</Typography>
-					<Typography variant="body2">Number of Hoops: {court.numHoops}</Typography>
+					<Typography variant="body2">
+						Number of Hoops: {court.numHoops}
+					</Typography>
 					<Typography variant="body2">{court.inOut}</Typography>
 				</CardContent>
 			</div>

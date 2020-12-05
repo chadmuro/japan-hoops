@@ -1,18 +1,10 @@
-const initState = {
-	courts: [
-		{ id: '1', name: 'yoyogi park', lat: 35.6716, lng: 139.6967 },
-		{ id: '2', name: 'tamachi park', lat: 35.6457, lng: 139.7476 },
-		{ id: '3', name: 'daimon station', lat: 35.6567, lng: 139.7546 },
-	],
-};
+const initState = {};
 
 const courtReducer = (state = initState, action) => {
 	switch (action.type) {
 		case 'ADD_COURT':
-			console.log('added court', action.court);
 			return state;
 		case 'ADD_COURT_ERROR':
-			console.log('add court error', action.err);
 			return state;
 		default:
 			return state;

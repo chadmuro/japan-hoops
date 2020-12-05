@@ -5,13 +5,12 @@ import authReducer from './authReducer';
 import courtReducer from './courtReducer';
 import locationReducer from './locationReducer';
 
-
 const rootReducer = combineReducers({
-    auth: authReducer,
-    court: courtReducer,
-    location: locationReducer,
-    firebase: firebaseReducer,
-    firestore: firestoreReducer
+	auth: authReducer,
+	court: courtReducer,
+	location: locationReducer,
+	firebase: firebaseReducer,
+	firestore: firestoreReducer,
 });
 
 export default rootReducer;
