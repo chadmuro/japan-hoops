@@ -1,21 +1,41 @@
 import React, { useState } from 'react';
-import { Grid, Hidden } from '@material-ui/core';
+import { Grid, Hidden, makeStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Map from '../map/Map';
 import CourtList from '../courts/CourtList';
 import AddCourt from '../courts/AddCourt';
 import LoginSignup from '../auth/LoginSignup';
 
-const Main = ({ courts, displayAddCourt, setDisplayAddCourt, loginSignup }) => {
+const useStyles = makeStyles({
+	root: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
+	}
+})
+
+const Main = ({
+	courts,
+	displayAddCourt,
+	location,
+	setDisplayAddCourt,
+	loginSignup,
+}) => {
 	const [mapSelector, setMapSelector] = useState(false);
 	const [newLatLng, setNewLatLng] = useState({
 		lat: 35.6804,
 		lng: 139.769,
 	});
+	const classes = useStyles();
 
-	return (
+	return location.loading ? (
+		<div className={classes.root}>
+			<CircularProgress size={100} color="secondary"/>
+		</div>
+	) : (
 		<>
 			{loginSignup && <LoginSignup />}
 			<Grid container>
@@ -51,10 +71,11 @@ const Main = ({ courts, displayAddCourt, setDisplayAddCourt, loginSignup }) => {
 };
 
 const mapStateToProps = state => {
-	console.log(state)
+	console.log(state);
 	return {
 		courts: state.firestore.ordered.courts,
 		loginSignup: state.auth.loginSignup,
+		location: state.location,
 	};
 };
 

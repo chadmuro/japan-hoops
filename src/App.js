@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { getLocation } from './store/actions/locationActions';
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 
@@ -19,8 +21,9 @@ const theme = createMuiTheme({
     }
 });
 
-const App = () => {
+const App = ({ getLocation }) => {
     const [displayAddCourt, setDisplayAddCourt] = useState(false);
+    getLocation();
 
     return (
 			<ThemeProvider theme={theme}>
@@ -36,4 +39,10 @@ const App = () => {
 		);
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+	return {
+		getLocation: () => dispatch(getLocation()),
+	};
+};
+
+export default connect(null, mapDispatchToProps)(App);

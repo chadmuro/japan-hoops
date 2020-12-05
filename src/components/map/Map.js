@@ -1,17 +1,13 @@
 import React from 'react';
-import {
-	MapContainer,
-	TileLayer,
-	Marker,
-	Popup
-} from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { connect } from 'react-redux';
 import MapMarker from './MapMarker';
 import DraggableMarker from './DraggableMarker';
 
-const Map = ({ courts, mapSelector, newLatLng, setNewLatLng }) => {
+const Map = ({ courts, mapSelector, newLatLng, setNewLatLng, location }) => {
 	return (
 		<MapContainer
-			center={[35.6804, 139.769]}
+			center={[location.lat, location.lng]}
 			zoom={13}
 			style={{
 				height: 'calc(100vh - 56px)',
@@ -23,14 +19,21 @@ const Map = ({ courts, mapSelector, newLatLng, setNewLatLng }) => {
 				attribution="Tiles &copy; Esri"
 				url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
 			/>
-			{mapSelector && <DraggableMarker newLatLng={newLatLng} setNewLatLng={setNewLatLng} />}
-			{courts && courts.map(court => {
-				return (
-					<MapMarker court={court} key={court.id}/>
-				);
-			})}
+			{mapSelector && (
+				<DraggableMarker newLatLng={newLatLng} setNewLatLng={setNewLatLng} />
+			)}
+			{courts &&
+				courts.map(court => {
+					return <MapMarker court={court} key={court.id} />;
+				})}
 		</MapContainer>
 	);
 };
 
-export default Map;
+const mapStateToProps = state => {
+	return {
+		location: state.location,
+	};
+};
+
+export default connect(mapStateToProps)(Map);
