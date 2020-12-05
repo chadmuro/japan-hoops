@@ -31,9 +31,6 @@ const CourtInfo = ({ court }) => {
 					<Typography component="h5" variant="h6" color="primary">
 						{court.name}
 					</Typography>
-					<Typography variant="caption" color="textSecondary">
-						Shibuya, Tokyo, Japan
-					</Typography>
 					<Typography variant="body1" color="secondary">
 						Closest Station: {court.station}
 					</Typography>
