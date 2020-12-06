@@ -10,4 +10,4 @@ This is an app to map public basketball courts in Japan.
 - Material-UI
 
 ## Live Site
-Coming soon...
+[Japan Hoops](https://japan-hoops.web.app/)
