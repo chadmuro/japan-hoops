@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Hidden, makeStyles } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -35,16 +35,14 @@ const Main = ({
 	) : (
 		<>
 			{loginSignup && <LoginSignup />}
-			<Grid container>
+			<Grid container className={classes.grid}>
 				<Grid item xs={12} sm={6} md={7} lg={8} xl={9}>
 					<Map mapSelector={mapSelector} courts={courts} />
 				</Grid>
 				{!displayAddCourt && (
-					<Hidden xsDown>
-						<Grid item sm={6} md={5} lg={4} xl={3}>
-							<CourtList courts={courts} />
-						</Grid>
-					</Hidden>
+					<Grid item xs={12} sm={6} md={5} lg={4} xl={3}>
+						<CourtList courts={courts} />
+					</Grid>
 				)}
 				{displayAddCourt && (
 					<Grid item xs={12} sm={6} md={5} lg={4} xl={3}>

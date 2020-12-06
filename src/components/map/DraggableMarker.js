@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Marker } from 'react-leaflet';
 import { setNewLocation } from '../../store/actions/locationActions';
@@ -14,7 +14,7 @@ const DraggableMarker = ({ newLocation, setNewLocation }) => {
 				}
 			},
 		}),
-		[newLocation, setNewLocation]
+		[setNewLocation]
 	);
 
 	return (
