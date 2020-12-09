@@ -33,10 +33,10 @@ const App = ({ getLocation }) => {
 				setDisplayAddCourt={setDisplayAddCourt}
 			/>
 			<Home />
-			<Main
+			{/* <Main
 				displayAddCourt={displayAddCourt}
 				setDisplayAddCourt={setDisplayAddCourt}
-			/>
+			/> */}
 		</ThemeProvider>
 	);
 };
