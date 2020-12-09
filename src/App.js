@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getLocation } from './store/actions/locationActions';
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
+import Home from './components/layout/Home';
 
 const theme = createMuiTheme({
 	palette: {
@@ -31,6 +32,7 @@ const App = ({ getLocation }) => {
 				displayAddCourt={displayAddCourt}
 				setDisplayAddCourt={setDisplayAddCourt}
 			/>
+			<Home />
 			<Main
 				displayAddCourt={displayAddCourt}
 				setDisplayAddCourt={setDisplayAddCourt}

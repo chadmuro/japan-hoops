@@ -1,7 +1,7 @@
 import { Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import { Typography } from '@material-ui/core';
-import basketball from '../../basketball.png';
+import basketball from '../../img/basketball.png';
 
 const MapMarker = ({ court }) => {
 	const icon = new Icon({
