@@ -51,7 +51,7 @@ const Home = () => {
 
 	return (
 		<>
-			<div className={classes.hero}>
+			<div className={classes.hero} id="home">
 				<div className={classes.content}>
 					{/* <div className={classes.ball}>
 						<motion.img

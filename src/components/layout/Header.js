@@ -14,6 +14,9 @@ const useStyles = makeStyles({
 	title: {
 		flexGrow: 1,
 	},
+	titleText: {
+		cursor: 'pointer'
+	}
 });
 
 const Header = ({
@@ -55,7 +58,7 @@ const Header = ({
 		<AppBar position="sticky">
 			<Toolbar>
 				<Typography variant="h6" className={classes.title}>
-					Japan Hoops
+					<Link to="home" spy={true} smooth={true} offset={-56} className={classes.titleText}>Japan Hoops</Link>
 				</Typography>
 				{auth.isLoaded && links}
 			</Toolbar>
