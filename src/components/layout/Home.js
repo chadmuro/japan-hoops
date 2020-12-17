@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-scroll';
 import { makeStyles, Typography, Button } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import hero from '../../img/hero.jpg';
@@ -52,14 +53,14 @@ const Home = () => {
 		<>
 			<div className={classes.hero}>
 				<div className={classes.content}>
-					<div className={classes.ball}>
+					{/* <div className={classes.ball}>
 						<motion.img
 							src={basketball}
 							className={classes.ballImage}
 							transition={bounceTransition}
 							animate={{ y: ['0%', '-150%'] }}
 						/>
-					</div>
+					</div> */}
 					<Typography variant="h2" align="center" className={classes.title}>
 						Japan Hoops
 					</Typography>
@@ -68,13 +69,11 @@ const Home = () => {
 						variant="contained"
 						className={classes.button}
 					>
-						View Map
+						<Link to="main" spy={true} smooth={true}>View Map</Link>
 					</Button>
 				</div>
 			</div>
-            <div className={classes.features}>
-                
-            </div>
+			<div className={classes.features}></div>
 		</>
 	);
 };

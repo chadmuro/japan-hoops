@@ -14,6 +14,7 @@ const Map = ({ courts, mapSelector, location }) => {
 				width: '100%',
 			}}
 			scrollWheelZoom={false}
+			id="main"
 		>
 			<TileLayer
 				attribution="Tiles &copy; Esri"

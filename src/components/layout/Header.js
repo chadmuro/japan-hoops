@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-scroll';
 import { connect } from 'react-redux';
 import {
 	AppBar,
@@ -24,13 +25,16 @@ const Header = ({
 }) => {
 	const classes = useStyles();
 
+	const handleClick = () => {
+		setDisplayAddCourt(!displayAddCourt);
+	};
+
 	const links = auth.uid ? (
 		<>
-			<Button
-				color="inherit"
-				onClick={() => setDisplayAddCourt(!displayAddCourt)}
-			>
-				{displayAddCourt ? 'Show Courts' : 'Add Court'}
+			<Button color="inherit">
+				<Link to="main" spy={true} smooth={true} onClick={handleClick}>
+					{displayAddCourt ? 'Show Courts' : 'Add Court'}
+				</Link>
 			</Button>
 			<Button color="inherit" onClick={logOut}>
 				Logout
@@ -48,7 +52,7 @@ const Header = ({
 	);
 
 	return (
-		<AppBar position="static">
+		<AppBar position="sticky">
 			<Toolbar>
 				<Typography variant="h6" className={classes.title}>
 					Japan Hoops
