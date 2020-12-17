@@ -15,8 +15,8 @@ const useStyles = makeStyles({
 		flexGrow: 1,
 	},
 	titleText: {
-		cursor: 'pointer'
-	}
+		cursor: 'pointer',
+	},
 });
 
 const Header = ({
@@ -35,7 +35,13 @@ const Header = ({
 	const links = auth.uid ? (
 		<>
 			<Button color="inherit">
-				<Link to="main" spy={true} smooth={true} offset={-56} onClick={handleClick}>
+				<Link
+					to="main"
+					spy={true}
+					smooth={true}
+					offset={-56}
+					onClick={handleClick}
+				>
 					{displayAddCourt ? 'Show Courts' : 'Add Court'}
 				</Link>
 			</Button>
@@ -58,7 +64,15 @@ const Header = ({
 		<AppBar position="sticky">
 			<Toolbar>
 				<Typography variant="h6" className={classes.title}>
-					<Link to="home" spy={true} smooth={true} offset={-56} className={classes.titleText}>Japan Hoops</Link>
+					<Link
+						to="home"
+						spy={true}
+						smooth={true}
+						offset={-56}
+						className={classes.titleText}
+					>
+						Japan Hoops
+					</Link>
 				</Typography>
 				{auth.isLoaded && links}
 			</Toolbar>

@@ -17,12 +17,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const Main = ({
-	courts,
-	displayAddCourt,
-	location,
-	setDisplayAddCourt,
-}) => {
+const Main = ({ courts, displayAddCourt, location, setDisplayAddCourt }) => {
 	const [mapSelector, setMapSelector] = useState(false);
 	const classes = useStyles();
 

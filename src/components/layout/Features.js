@@ -39,8 +39,7 @@ const Features = () => {
 						<SportsBasketballIcon color="primary" className={classes.icon} />
 						<Typography variant="h5">Find Courts</Typography>
 						<Typography variant="body1">
-							Find basketball courts near you. Help the community by adding new court
-							information.
+							Find basketball courts near you. Help the community by adding new court information.
 						</Typography>
 					</CardContent>
 				</Card>

@@ -16,33 +16,33 @@ const useStyles = makeStyles({
 		width: '100%',
 		opacity: 0.7,
 		overflow: 'hidden',
-        objectFit: 'cover',
-        zIndex: -1
-    },
-    text: {
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
+		objectFit: 'cover',
+		zIndex: -1,
+	},
+	text: {
+		height: '100%',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 });
 
 const Community = () => {
-    const classes = useStyles();
+	const classes = useStyles();
 
-    return (
-			<div className={classes.root}>
-				<video className={classes.video} autoPlay muted loop>
-					<source src={hoops} type="video/mp4" />
-					Your browser does not support the video tag.
-				</video>
-				<div className={classes.text}>
-					<Typography variant="h3" color="secondary">
-						Join Us Today!
-					</Typography>
-				</div>
+	return (
+		<div className={classes.root}>
+			<video className={classes.video} autoPlay muted loop>
+				<source src={hoops} type="video/mp4" />
+				Your browser does not support the video tag.
+			</video>
+			<div className={classes.text}>
+				<Typography variant="h3" color="secondary">
+					Join Us Today!
+				</Typography>
 			</div>
-		);
-}
+		</div>
+	);
+};
 
 export default Community;
