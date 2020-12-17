@@ -8,7 +8,7 @@ const Map = ({ courts, mapSelector, location }) => {
 	return (
 		<MapContainer
 			center={[location.lat, location.lng]}
-			zoom={13}
+			zoom={12}
 			style={{
 				height: 'calc(100vh - 56px)',
 				width: '100%',

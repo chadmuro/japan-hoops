@@ -32,7 +32,7 @@ const Header = ({
 	const links = auth.uid ? (
 		<>
 			<Button color="inherit">
-				<Link to="main" spy={true} smooth={true} onClick={handleClick}>
+				<Link to="main" spy={true} smooth={true} offset={-56} onClick={handleClick}>
 					{displayAddCourt ? 'Show Courts' : 'Add Court'}
 				</Link>
 			</Button>

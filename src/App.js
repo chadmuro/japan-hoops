@@ -3,8 +3,11 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { getLocation } from './store/actions/locationActions';
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 import Main from './components/layout/Main';
 import Home from './components/layout/Home';
+import Features from './components/layout/Features';
+import Community from './components/layout/Community';
 import LoginSignup from './components/auth/LoginSignup';
 
 const theme = createMuiTheme({
@@ -37,10 +40,13 @@ const App = ({ loginSignup, getLocation }) => {
 						setDisplayAddCourt={setDisplayAddCourt}
 					/>
 					<Home />
+					<Features />
 					<Main
 						displayAddCourt={displayAddCourt}
 						setDisplayAddCourt={setDisplayAddCourt}
 					/>
+					<Community />
+					<Footer />
 				</>
 			)}
 		</ThemeProvider>

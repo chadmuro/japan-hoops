@@ -32,7 +32,7 @@ const Main = ({
 		</div>
 	) : (
 		<>
-			<Grid container className={classes.grid}>
+			<Grid container className={classes.grid} id="main">
 				<Grid item xs={12} sm={6} md={7} lg={8} xl={9}>
 					<Map mapSelector={mapSelector} courts={courts} />
 				</Grid>

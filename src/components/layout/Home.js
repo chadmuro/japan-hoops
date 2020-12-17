@@ -68,8 +68,11 @@ const Home = () => {
 						color="secondary"
 						variant="contained"
 						className={classes.button}
+						size="large"
 					>
-						<Link to="main" spy={true} smooth={true}>View Map</Link>
+						<Link to="main" spy={true} smooth={true} offset={-56}>
+							View Courts
+						</Link>
 					</Button>
 				</div>
 			</div>
