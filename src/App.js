@@ -5,6 +5,7 @@ import { getLocation } from './store/actions/locationActions';
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 import Home from './components/layout/Home';
+import LoginSignup from './components/auth/LoginSignup';
 
 const theme = createMuiTheme({
 	palette: {
@@ -22,23 +23,34 @@ const theme = createMuiTheme({
 	},
 });
 
-const App = ({ getLocation }) => {
+const App = ({ loginSignup, getLocation }) => {
 	const [displayAddCourt, setDisplayAddCourt] = useState(false);
 	getLocation();
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Header
-				displayAddCourt={displayAddCourt}
-				setDisplayAddCourt={setDisplayAddCourt}
-			/>
-			<Home />
-			<Main
-				displayAddCourt={displayAddCourt}
-				setDisplayAddCourt={setDisplayAddCourt}
-			/>
+			{loginSignup && <LoginSignup />}
+			{!loginSignup && (
+				<>
+					<Header
+						displayAddCourt={displayAddCourt}
+						setDisplayAddCourt={setDisplayAddCourt}
+					/>
+					<Home />
+					<Main
+						displayAddCourt={displayAddCourt}
+						setDisplayAddCourt={setDisplayAddCourt}
+					/>
+				</>
+			)}
 		</ThemeProvider>
 	);
+};
+
+const mapStateToProps = state => {
+	return {
+		loginSignup: state.auth.loginSignup,
+	};
 };
 
 const mapDispatchToProps = dispatch => {
@@ -47,4 +59,4 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

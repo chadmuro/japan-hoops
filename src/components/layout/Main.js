@@ -7,7 +7,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Map from '../map/Map';
 import CourtList from '../courts/CourtList';
 import AddCourt from '../courts/AddCourt';
-import LoginSignup from '../auth/LoginSignup';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -23,7 +22,6 @@ const Main = ({
 	displayAddCourt,
 	location,
 	setDisplayAddCourt,
-	loginSignup,
 }) => {
 	const [mapSelector, setMapSelector] = useState(false);
 	const classes = useStyles();
@@ -34,7 +32,6 @@ const Main = ({
 		</div>
 	) : (
 		<>
-			{loginSignup && <LoginSignup />}
 			<Grid container className={classes.grid}>
 				<Grid item xs={12} sm={6} md={7} lg={8} xl={9}>
 					<Map mapSelector={mapSelector} courts={courts} />
@@ -62,7 +59,6 @@ const Main = ({
 const mapStateToProps = state => {
 	return {
 		courts: state.firestore.ordered.courts,
-		loginSignup: state.auth.loginSignup,
 		location: state.location,
 	};
 };
